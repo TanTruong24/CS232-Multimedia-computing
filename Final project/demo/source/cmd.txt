@@ -1,0 +1,41 @@
+1. Open cmd in Administrative mode and move to “C:/Hadoop-3.3.0/sbin” and start cluster
+
+start-all.cmd
+
+http://localhost:8088
+http://localhost:9870
+
+1.1 To leave Safe mode
+
+hadoop dfsadmin -safemode leave
+
+2. Create an input directory in HDFS.
+
+hadoop fs -mkdir /input_democs232
+
+3. Copy the input text file named demo-text.txt in the input directory (input_democs232)of HDFS.
+
+hadoop fs -put C:/demo-text.txt /input_democs232
+
+4. Verify demo-text.txt available in HDFS input directory (input_democs232).
+
+hadoop fs -ls /input_democs232/
+
+5. Verify content of the copied file.
+
+hadoop dfs -cat /input_democs232/demo-text.txt
+
+6. Run the wordcount MapReduce job provided in
+%HADOOP_HOME%\share\hadoop\mapreduce\hadoop-mapreduce-examples-3.3.0.jar
+
+hadoop jar C:/hadoop-3.3.0/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.3.0.jar wordcount /input_democs232 /output_democs232
+
+7. Verify content for generated output file.
+
+hadoop dfs -cat /output_democs232/*
+
+
+
+
+To Delete directory from HDFS directory
+hadoop fs -rm -r /iutput_dir
